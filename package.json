@@ -1,10 +1,13 @@
 {
   "name": "nestjs-auth-graphql-starter",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
-  "private": true,
-  "license": "UNLICENSED",
+  "description": "A NestJS boilerplate with PassportJS authentication and GraphQL support.",
+  "contributors": [
+    "Dominik Berger (https://doemuulive-56e78.web.app/)",
+    "RaviAnand Mohabir <moravrav@gmail.com> (https://ravianand.web.app)"
+  ],
+  "private": false,
+  "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
     "build": "nest build",
