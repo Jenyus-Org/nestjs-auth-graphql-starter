@@ -13,6 +13,7 @@
 - Properly configures `ormconfig.js` for runtime synchronization and migrations
 - Implements refresh token based auth flow
 - Uses PassportJS and JWT for authentication
+- Custom Prettier and ESLint config
 
 ### Configuration Files
 
