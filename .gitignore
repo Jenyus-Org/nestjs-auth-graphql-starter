@@ -32,3 +32,9 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# Temp files
+/tmp
+
+# TypeORM
+ormconfig.js
