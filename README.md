@@ -14,6 +14,7 @@
 - Implements refresh token based auth flow
 - Uses PassportJS and JWT for authentication
 - Custom Prettier and ESLint config
+- Uses [`@jenyus-org/nestjs-graphql-utils`](https://github.com/Jenyus-Org/graphql-utils) to optimize queries and [solve the N+1 problem](https://ravianand.web.app/blog/graphql-utils)
 
 ### Configuration Files
 
