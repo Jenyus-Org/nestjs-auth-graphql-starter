@@ -19,13 +19,18 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "typeorm": "ts-node ./node_modules/typeorm/cli.js"
+    "typeorm": "ts-node ./node_modules/typeorm/cli.js",
+    "generate-typings": "ts-node generate-typings.ts"
   },
   "dependencies": {
     "@nestjs/common": "^7.5.1",
     "@nestjs/core": "^7.5.1",
+    "@nestjs/graphql": "^7.9.9",
     "@nestjs/platform-express": "^7.5.1",
     "@nestjs/typeorm": "^7.1.5",
+    "apollo-server-express": "^2.21.0",
+    "graphql": "^15.5.0",
+    "graphql-tools": "^7.0.4",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.6.3",
