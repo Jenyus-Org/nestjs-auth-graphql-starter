@@ -28,11 +28,12 @@ type RegisterUserPayload {
 
 type Query {
   users: [User!]!
-  user(id: Int!): User!
+  user(username: String, id: Int!): User!
+  me: User!
 }
 
 type Mutation {
-  updateUser(updateUserInput: UpdateUserInput!): User!
+  updateProfile(updateUserInput: UpdateUserInput!): User!
   login(input: LoginUserInput!): LoginUserPayload!
   refreshToken(input: RefreshTokenInput!): RefreshTokenPayload!
   register(input: RegisterUserInput!): RegisterUserPayload!

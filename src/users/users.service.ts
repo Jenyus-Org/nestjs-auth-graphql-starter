@@ -38,8 +38,8 @@ export class UsersService {
     }
   }
 
-  update(id: number, updateUserInput: UpdateUserInput | UpdateUserDto) {
-    return this.usersRepository.update(id, updateUserInput);
+  async update(id: number, updateUserInput: UpdateUserInput | UpdateUserDto) {
+    return this.usersRepository.save({ id, ...updateUserInput });
   }
 
   async remove(id: number) {
