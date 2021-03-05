@@ -2,33 +2,33 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-input CreateUserInput {
+type User {
+  id: Int!
+  username: String!
   firstName: String
   lastName: String
-  username: String!
+}
+
+type Query {
+  users: [User!]!
+  user(id: Int!): User!
 }
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
-  removeUser(id: Int!): Boolean!
   updateUser(updateUserInput: UpdateUserInput!): User!
+  removeUser(id: Int!): Boolean!
 }
 
-type Query {
-  user(id: Int!): User!
-  users: [User!]!
+input CreateUserInput {
+  username: String!
+  firstName: String
+  lastName: String
 }
 
 input UpdateUserInput {
-  firstName: String
   id: Int!
-  lastName: String
   username: String
-}
-
-type User {
   firstName: String
-  id: Int!
   lastName: String
-  username: String!
 }
