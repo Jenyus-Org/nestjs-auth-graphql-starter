@@ -36,5 +36,6 @@ lerna-debug.log*
 # Temp files
 /tmp
 
-# TypeORM
+# Environment files
 ormconfig.js
+.env
