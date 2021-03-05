@@ -1,6 +1,5 @@
 import { Args, Mutation, Resolver } from "@nestjs/graphql";
 import { UserInputError } from "apollo-server-express";
-import { UserObject } from "../users/dto/user.object";
 import { AuthService } from "./auth.service";
 import { LoginUserInput } from "./dto/login-user.input";
 import { LoginUserPayload } from "./dto/login-user.payload";
