@@ -9,21 +9,33 @@ type User {
   lastName: String
 }
 
+type LoginUserPayload {
+  user: User!
+  accessToken: String!
+  refreshToken: String!
+}
+
+type RefreshTokenPayload {
+  user: User!
+  accessToken: String!
+}
+
+type RegisterUserPayload {
+  user: User!
+  accessToken: String!
+  refreshToken: String!
+}
+
 type Query {
   users: [User!]!
   user(id: Int!): User!
 }
 
 type Mutation {
-  createUser(createUserInput: CreateUserInput!): User!
   updateUser(updateUserInput: UpdateUserInput!): User!
-  removeUser(id: Int!): Boolean!
-}
-
-input CreateUserInput {
-  username: String!
-  firstName: String
-  lastName: String
+  login(input: LoginUserInput!): LoginUserPayload!
+  refreshToken(input: RefreshTokenInput!): RefreshTokenPayload!
+  register(input: RegisterUserInput!): RegisterUserPayload!
 }
 
 input UpdateUserInput {
@@ -31,4 +43,18 @@ input UpdateUserInput {
   username: String
   firstName: String
   lastName: String
+}
+
+input LoginUserInput {
+  username: String!
+  password: String!
+}
+
+input RefreshTokenInput {
+  refreshToken: String!
+}
+
+input RegisterUserInput {
+  username: String!
+  password: String!
 }

@@ -1,11 +1,14 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { CreateUserDto } from "./dto/create-user.dto";
-import { CreateUserInput } from "./dto/create-user.input";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { UpdateUserInput } from "./dto/update-user.input";
 import { User } from "./entities/user.entity";
+
+interface FindOneArgs {
+  id?: number;
+  username?: string;
+}
 
 @Injectable()
 export class UsersService {
@@ -14,7 +17,7 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
-  create(createUserInput: CreateUserInput | CreateUserDto) {
+  create(createUserInput: Partial<User>) {
     return this.usersRepository.save(createUserInput);
   }
 
@@ -22,8 +25,17 @@ export class UsersService {
     return this.usersRepository.find();
   }
 
-  findOne(id: number) {
-    return this.usersRepository.findOne({ id });
+  async findOne({ id, username }: FindOneArgs) {
+    if (id) {
+      return await this.usersRepository.findOne(id);
+    } else if (username) {
+      return await this.usersRepository
+        .createQueryBuilder()
+        .where("LOWER(username) = LOWER(:username)", { username })
+        .getOne();
+    } else {
+      throw new Error("One of ID or username must be provided.");
+    }
   }
 
   update(id: number, updateUserInput: UpdateUserInput | UpdateUserDto) {

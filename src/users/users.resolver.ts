@@ -8,11 +8,6 @@ import { UsersService } from "./users.service";
 export class UsersResolver {
   constructor(private readonly usersService: UsersService) {}
 
-  @Mutation(() => UserObject)
-  createUser(@Args("createUserInput") createUserInput: CreateUserInput) {
-    return this.usersService.create(createUserInput);
-  }
-
   @Query(() => [UserObject])
   users() {
     return this.usersService.findAll();
@@ -20,16 +15,11 @@ export class UsersResolver {
 
   @Query(() => UserObject)
   user(@Args("id", { type: () => Int }) id: number) {
-    return this.usersService.findOne(id);
+    return this.usersService.findOne({ id });
   }
 
   @Mutation(() => UserObject)
   updateUser(@Args("updateUserInput") updateUserInput: UpdateUserInput) {
     return this.usersService.update(updateUserInput.id, updateUserInput);
-  }
-
-  @Mutation(() => Boolean)
-  removeUser(@Args("id", { type: () => Int }) id: number) {
-    return this.usersService.remove(id);
   }
 }
