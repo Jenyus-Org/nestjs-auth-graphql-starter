@@ -5,9 +5,14 @@ import { UpdateUserDto } from "./dto/update-user.dto";
 import { UpdateUserInput } from "./dto/update-user.input";
 import { User } from "./entities/user.entity";
 
-interface FindOneArgs {
+interface FindAllArgs {
+  relations?: string[];
+}
+
+interface FindOneArgs extends FindAllArgs {
   id?: number;
   username?: string;
+  postId?: number;
 }
 
 @Injectable()
@@ -21,11 +26,11 @@ export class UsersService {
     return this.usersRepository.save(createUserInput);
   }
 
-  findAll() {
-    return this.usersRepository.find();
+  findAll(args?: FindAllArgs) {
+    return this.usersRepository.find(args);
   }
 
-  async findOne({ id, username }: FindOneArgs) {
+  async findOne({ id, username, postId }: FindOneArgs) {
     if (id) {
       return await this.usersRepository.findOne(id);
     } else if (username) {
@@ -33,6 +38,13 @@ export class UsersService {
         .createQueryBuilder()
         .where("LOWER(username) = LOWER(:username)", { username })
         .getOne();
+    } else if (postId) {
+      return await this.usersRepository.findOne({
+        join: { alias: "users", innerJoin: { posts: "users.posts" } },
+        where: (qb) => {
+          qb.where("posts.id = :postId", { postId });
+        },
+      });
     } else {
       throw new Error("One of ID or username must be provided.");
     }

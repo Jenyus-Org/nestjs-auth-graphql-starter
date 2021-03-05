@@ -1009,6 +1009,24 @@
   resolved "https://registry.yarnpkg.com/@istanbuljs/schema/-/schema-0.1.3.tgz#e45e384e4b8ec16bce2fd903af78450f6bf7ec98"
   integrity sha512-ZXRY4jNvVgSVQ8DL3LTcakaAtXwTVUxE81hslsyD2AtoXW/wVob10HkOJ1X/pAlcI7D+2YoZKg5do8G/w6RYgA==
 
+"@jenyus-org/graphql-utils@^1.3.0":
+  version "1.3.1"
+  resolved "https://registry.yarnpkg.com/@jenyus-org/graphql-utils/-/graphql-utils-1.3.1.tgz#0a3e0f21bb030b4d84f32f38a2bd3da08e09922f"
+  integrity sha512-aliCi7KpQfCbtf2TIsX2E3aCX3VTqzk33l+eeTStvxh/L6yvvBZ5RLicdaWvcqM1U0BycrXLKpOLuIuZfLav8A==
+  dependencies:
+    graphql "^15.5.0"
+
+"@jenyus-org/nestjs-graphql-utils@^1.6.1":
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/@jenyus-org/nestjs-graphql-utils/-/nestjs-graphql-utils-1.6.1.tgz#50b07b28ea78ae2fb2cdc1ece9d54ed273763e86"
+  integrity sha512-AI+KXC8Oj+/bUHf+9G0q4OLtAvQLOXREaFpAdmoN14LYCSYPZMYbZc+OkUwTWhUwa2/Jq8Mf3pXo+0IB1zQdRA==
+  dependencies:
+    "@jenyus-org/graphql-utils" "^1.3.0"
+    "@nestjs/common" "^7.6.12"
+    "@nestjs/core" "^7.6.12"
+    "@nestjs/graphql" "^7.9.8"
+    rxjs "^6.6.3"
+
 "@jest/console@^26.6.2":
   version "26.6.2"
   resolved "https://registry.yarnpkg.com/@jest/console/-/console-26.6.2.tgz#4e04bc464014358b03ab4937805ee36a0aeb98f2"
@@ -1223,7 +1241,7 @@
     webpack "5.11.0"
     webpack-node-externals "2.5.2"
 
-"@nestjs/common@^7.5.1":
+"@nestjs/common@^7.5.1", "@nestjs/common@^7.6.12":
   version "7.6.13"
   resolved "https://registry.yarnpkg.com/@nestjs/common/-/common-7.6.13.tgz#597558afedfddeb5021fe8a154327ee082279ab8"
   integrity sha512-xijw6so4yA8Ywi8mnrA7Kz97ZC36u20Eyb5/XvmokdLcgTcTyHVdE39r44JYnjHPf8SKZoJ965zdu/fKl4s4GQ==
@@ -1245,7 +1263,7 @@
     lodash.set "4.3.2"
     uuid "8.3.2"
 
-"@nestjs/core@^7.5.1":
+"@nestjs/core@^7.5.1", "@nestjs/core@^7.6.12":
   version "7.6.13"
   resolved "https://registry.yarnpkg.com/@nestjs/core/-/core-7.6.13.tgz#b7518dceb436e6ed2c1fad2cff86ddf69b143e73"
   integrity sha512-8oY8yZSgri2DngqmvBMtwYw1GIAaXbUXS7Y0mp/iSZ6jP7CQqYCybdcMPneunrt5PG8rtJsq6n+4JNRvxXrVmA==
@@ -1257,6 +1275,29 @@
     path-to-regexp "3.2.0"
     tslib "2.1.0"
     uuid "8.3.2"
+
+"@nestjs/graphql@^7.9.8":
+  version "7.9.11"
+  resolved "https://registry.yarnpkg.com/@nestjs/graphql/-/graphql-7.9.11.tgz#2bfaf9b2800cb7e71238e4d60376c3edf5f6e809"
+  integrity sha512-rht7xl02f8kSwAdXbOiR06d69QUCKSHjpbkMFIFuFUcDkvIRigaNoXs9MpFAECnvpi4w9o3F7KT4rn06ShwKMA==
+  dependencies:
+    "@graphql-tools/merge" "6.2.7"
+    "@graphql-tools/schema" "6.2.4"
+    "@graphql-tools/utils" "6.2.4"
+    "@nestjs/mapped-types" "0.3.0"
+    apollo-env "0.6.5"
+    apollo-server-core "2.16.1"
+    chokidar "3.5.1"
+    fast-glob "3.2.5"
+    iterall "1.2.2"
+    lodash "4.17.20"
+    normalize-path "3.0.0"
+    tslib "2.1.0"
+    uuid "8.3.2"
+  optionalDependencies:
+    "@apollo/gateway" "^0.17.0"
+    apollo-server-testing "^2.16.1"
+    ts-morph "^9.0.0"
 
 "@nestjs/graphql@^7.9.9":
   version "7.9.9"
