@@ -13,10 +13,10 @@ export class AuthResolver {
   constructor(private authService: AuthService) {}
 
   @Mutation(() => LoginUserPayload)
-  async login(@Args("input") loginInput: LoginUserInput) {
+  async login(@Args("input") input: LoginUserInput) {
     const user = await this.authService.validateUser(
-      loginInput.username,
-      loginInput.password,
+      input.username,
+      input.password,
     );
 
     if (!user) {
@@ -38,12 +38,12 @@ export class AuthResolver {
   }
 
   @Mutation(() => RefreshTokenPayload)
-  async refreshToken(@Args("input") refreshInput: RefreshTokenInput) {
+  async refreshToken(@Args("input") input: RefreshTokenInput) {
     const {
       user,
       token,
     } = await this.authService.createAccessTokenFromRefreshToken(
-      refreshInput.refreshToken,
+      input.refreshToken,
     );
 
     const payload = new RefreshTokenPayload();
@@ -54,15 +54,15 @@ export class AuthResolver {
   }
 
   @Mutation(() => RegisterUserPayload)
-  async register(@Args("input") registerInput: RegisterUserInput) {
+  async register(@Args("input") input: RegisterUserInput) {
     const user = await this.authService.register(
-      registerInput.username,
-      registerInput.password,
+      input.username,
+      input.password,
     );
 
     if (!user) {
       return new UserInputError(
-        `User by username ${registerInput.username} already exists.`,
+        `User by username ${input.username} already exists.`,
       );
     }
 

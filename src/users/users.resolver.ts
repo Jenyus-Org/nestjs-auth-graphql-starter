@@ -19,7 +19,7 @@ export class UsersResolver {
 
   @Query(() => UserObject)
   user(
-    @Args("id", { type: () => Int }) id?: number,
+    @Args("id", { type: () => Int, nullable: true }) id?: number,
     @Args("username", { nullable: true }) username?: string,
   ) {
     if (!id && !username) {
@@ -29,8 +29,8 @@ export class UsersResolver {
   }
 
   @Mutation(() => UserObject)
-  updateProfile(@Args("updateUserInput") updateUserInput: UpdateUserInput) {
-    return this.usersService.update(updateUserInput.id, updateUserInput);
+  updateProfile(@Args("input") input: UpdateUserInput) {
+    return this.usersService.update(input.id, input);
   }
 
   @Query(() => UserObject)
