@@ -1,23 +1,29 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Put,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  UnauthorizedException,
+  UseGuards,
 } from "@nestjs/common";
-import { PostsService } from "./posts.service";
+import { CurrentUser } from "src/auth/decorator/current-user.decorator";
+import { JwtAuthGuard } from "src/auth/guards/jwt-auth.guard";
+import { User } from "src/users/entities/user.entity";
 import { CreatePostDto } from "./dto/create-post.dto";
 import { UpdatePostDto } from "./dto/update-post.dto";
+import { PostsService } from "./posts.service";
 
 @Controller("posts")
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
+  @UseGuards(JwtAuthGuard)
   @Post()
-  create(@Body() createPostDto: CreatePostDto) {
-    return this.postsService.create(createPostDto);
+  create(@CurrentUser() user: User, @Body() createPostDto: CreatePostDto) {
+    return this.postsService.create(user.id, createPostDto);
   }
 
   @Get()
@@ -27,16 +33,36 @@ export class PostsController {
 
   @Get(":id")
   findOne(@Param("id") id: string) {
-    return this.postsService.findOne(+id);
+    return this.postsService.findOne({ id: +id });
   }
 
+  @UseGuards(JwtAuthGuard)
   @Put(":id")
-  update(@Param("id") id: string, @Body() updatePostDto: UpdatePostDto) {
+  async update(
+    @CurrentUser() user: User,
+    @Param("id") id: string,
+    @Body() updatePostDto: UpdatePostDto,
+  ) {
+    const post = await this.postsService.findOne({
+      id: +id,
+      relations: ["author"],
+    });
+    if (post.author.id !== user.id) {
+      throw new UnauthorizedException("You aren't the author of this post.");
+    }
     return this.postsService.update(+id, updatePostDto);
   }
 
+  @UseGuards(JwtAuthGuard)
   @Delete(":id")
-  remove(@Param("id") id: string) {
+  async remove(@CurrentUser() user: User, @Param("id") id: string) {
+    const post = await this.postsService.findOne({
+      id: +id,
+      relations: ["author"],
+    });
+    if (post.author.id !== user.id) {
+      throw new UnauthorizedException("You aren't the author of this post.");
+    }
     return this.postsService.remove(+id);
   }
 }
