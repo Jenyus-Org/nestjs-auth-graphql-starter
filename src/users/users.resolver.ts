@@ -1,5 +1,6 @@
-import { Resolver, Query, Mutation, Args } from "@nestjs/graphql";
-import { CreateUserInput, UpdateUserInput } from "src/graphql";
+import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
+import { CreateUserInput } from "./dto/create-user.input";
+import { UpdateUserInput } from "./dto/update-user.input";
 import { UsersService } from "./users.service";
 
 @Resolver("User")

@@ -8,7 +8,7 @@
 
 ## Setup
 
-- Uses schema-first GraphQL
+- Uses code-first GraphQL
 - Uses TypeORM for entities and migrations
 - Properly configures `ormconfig.js` for runtime synchronization and migrations
 - Implements refresh token based auth flow
