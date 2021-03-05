@@ -7,6 +7,7 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from "typeorm";
+import { Post } from "../../posts/entities/post.entity";
 
 @Entity({ name: "users" })
 export class User {
@@ -24,6 +25,9 @@ export class User {
 
   @Column({ name: "last_name", nullable: true })
   lastName: string;
+
+  @OneToMany(() => Post, (post) => post.author, { cascade: true })
+  posts: Post[];
 
   @OneToMany(() => RefreshToken, (refreshToken) => refreshToken.user, {
     cascade: true,
