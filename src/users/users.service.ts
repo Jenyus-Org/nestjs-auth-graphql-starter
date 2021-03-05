@@ -1,9 +1,10 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { CreateUserInput, UpdateUserInput } from "src/graphql";
 import { Repository } from "typeorm";
 import { CreateUserDto } from "./dto/create-user.dto";
+import { CreateUserInput } from "./dto/create-user.input";
 import { UpdateUserDto } from "./dto/update-user.dto";
+import { UpdateUserInput } from "./dto/update-user.input";
 import { User } from "./entities/user.entity";
 
 @Injectable()
@@ -29,7 +30,8 @@ export class UsersService {
     return this.usersRepository.update(id, updateUserInput);
   }
 
-  remove(id: number) {
-    return this.usersRepository.delete(id);
+  async remove(id: number) {
+    const res = await this.usersRepository.delete(id);
+    return res.affected === 1;
   }
 }
