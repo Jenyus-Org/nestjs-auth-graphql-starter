@@ -10,18 +10,18 @@ input CreateUserInput {
 
 type Mutation {
   createUser(createUserInput: CreateUserInput!): User!
-  removeUser(id: Float!): Boolean!
+  removeUser(id: Int!): Boolean!
   updateUser(updateUserInput: UpdateUserInput!): User!
 }
 
 type Query {
-  user(id: Float!): User!
+  user(id: Int!): User!
   users: [User!]!
 }
 
 input UpdateUserInput {
   firstName: String
-  id: Int
+  id: Int!
   lastName: String
   username: String
 }
