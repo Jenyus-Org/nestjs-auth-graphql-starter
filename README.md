@@ -6,6 +6,10 @@
 
 [Nest](https://github.com/nestjs/nest) framework TypeScript boilerplate with PassportJS authentication, GraphQL and OpenAPI docs integrations.
 
+## Note from the Maintainers
+
+This repository has been archived as we consider the use of TypeORM to lead to technical debt in modern web projects. Instead we recommend checking out the [MikroORM based starter](https://github.com/Jenyus-Org/nestjs-auth-graphql-mikroorm-starter) with an otherwise identical setup.
+
 ## Setup
 
 - Uses code-first GraphQL
